@@ -2,12 +2,17 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<!--涉及機敏性資料的內容放在另一個js檔裡，不放上Github，相對路徑固定..\..\critical\xxxx.js-->
+	<script src="..\..\critical\initFB.js"></script>
+	<!--第三方js-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-	
+	<!--自製JS-->
 	<script src="loginFunc.js"></script>
+	<!--第三方CSS-->
+	<!--自製CSS-->
 	<link rel="stylesheet" href="markers.css">
 	<link rel="stylesheet" href="stdLayout.css">
-	<title>JQuery test page</title>
+	<title>Dummy Login Page</title>
 </head>
 <body>
 	<div class="lightGreenBack stdMargin stdPadding stdHintBlock">
@@ -29,7 +34,7 @@
 	
 	
 	<div class="lightBlueBack stdMajorBlock stdMargin stdPadding">
-		<p>FB登入</p>
+		<p>以FB登入</p>
 		<p>未完成</p>
 		<input id="jamLoginFB" type="button" value="FB登入">
 		<p>登入的狀態顯示於下方:</p>
