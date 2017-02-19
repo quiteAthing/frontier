@@ -7,7 +7,7 @@
 	<script src="..\..\critical\initFB.js"></script>
 	<script src="..\..\critical\urls1.js"></script>
 	
-	<script src="simpleJsonSend.js"></script>
+	<script src="imageCropper.js"></script>
 	<link rel="stylesheet" href="stdLayout.css">
 	<link rel="stylesheet" href="markers.css">
 	<title>JQuery test page</title>
@@ -15,10 +15,15 @@
 <body>
 
 	<div class="stdMargin stdPadding greenBack">
-		<p>這邊用來測試以jQuery傳送一個含有下方欄位輸入資料的JSON物件到TestResponder/sideWinder</p>
-		<input type="text" id="testField1"></input>
-		<input type="button" id="btn1" value="測試JSON傳送"></input>
+		<p>這邊用來讀取圖片檔案並將之縮圖及切圓邊</p>
+		
+		<input type="file" id="btn1" value="讀入檔案"></input>
+		<img id="testImg"></img>
 		<p id="responder">測試用的文字</p>	
+	</div>
+	
+	<div class="stdMargin stdPadding yellowBack">
+		<canvas id="resizer"></canvas>
 	</div>
 	
 	

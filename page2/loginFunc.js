@@ -13,17 +13,33 @@
 	 
  });
  
+ var isWaiting=false;
  
  function testPW(event){
 		var str=$('#jamACC').val()+$('#jamPW').val();
-		$("#responder").html(str); 
+		$("#responder").html(str);
+		
+		var info= new Object();
+		info.userName=$("#jamACC").val();
+		info.userPwd=$("#jamPW").val();
+		getAccIden("normal",JSON.stringify(info));
+		
  }
  
- //像伺服器取得資訊的方法A
- //因為可能用BCD所以先加個A來保留
- function getAccIden(){
-	 
+ function getAccIden(type,jsonData){
+	 var callURL=loginURL+"?type="+type;
+	 console.log("callURL   "+callURL);
+	 var xhr=new XMLHttpRequest();
+
+		xhr.onreadystatechange=function(){
+		 console.log("sta"+this.readyState);
+		if(xhr.readyState==1){xhr.send(jsonData);}
+	 if(xhr.readyState==4&&xhr.status==200){console.log("receive : "+xhr.responseText);}
+	 };			 
+		 xhr.open("post",callURL,true);
  }
+
+ 
  
  
  //fb使用的方法
@@ -41,7 +57,12 @@
  }
  
  function showIsCheck(){
+	 isWaitng=!isWaiting;
+	 if(isWaiting){
 	 $("#indicator").html("正在檢查帳號狀態");
+	 }else{
+		 $("#indicator").html("檢查完成");
+	 }
  }
 
  
