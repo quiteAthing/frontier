@@ -3,27 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-	<!--涉及機敏性資料的內容放在另一個js檔裡，不放上Github，相對路徑固定..\..\critical\xxxx.js-->
-	<script src="..\..\critical\initFB.js"></script>
-	<script src="..\..\critical\urls1.js"></script>
-	
 	<script src="imageCropper.js"></script>
 	<link rel="stylesheet" href="stdLayout.css">
 	<link rel="stylesheet" href="markers.css">
 	<title>JQuery test page</title>
 </head>
-<body>
+<body style="background:gray;">
 
 	<div class="stdMargin stdPadding greenBack">
 		<p>這邊用來讀取圖片檔案並將之縮圖及切圓邊</p>
-		
+		<p>使用時複製 canvas標籤及JS檔即可，請務必指定寬度、高度跟id給canvas。其他部份都是測試用的內容，與功能無關。</p>
+		<p id="scaleInd"></p>
 		<input type="file" id="btn1" value="讀入檔案"></input>
 		<img id="testImg"></img>
 		<p id="responder">測試用的文字</p>	
 	</div>
 	
-	<div class="stdMargin stdPadding yellowBack">
-		<canvas id="resizer"></canvas>
+	<div class="stdMargin stdPadding ">
+		<canvas id="resizer" width="144px" height="144px"></canvas>
 	</div>
 	
 	
