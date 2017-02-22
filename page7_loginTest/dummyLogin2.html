@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<!--涉及機敏性資料的內容放在另一個js檔裡，不放上Github，相對路徑固定..\..\critical\xxxx.js-->
-	<script src="..\..\critical\initFB.js"></script>
-	<script src="..\..\critical\urls1.js"></script>
+	<script src="http:\\localhost:8080\webDeploy\critical\initFB.js"></script>
+	<script src="http:\\localhost:8080\webDeploy\critical\urls1.js"></script>
 	<!--第三方js-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
 	<!--自製JS-->
@@ -22,21 +22,31 @@
 	<span class="yelloBack">需要遵守一定的id命名規則，所有由我定義的Tag，需要被JS操控的，id會以"jam"(全小寫開頭)</span>
 	</div>
 	
-	
+	<div>
+		<form>
+			<input type="radio" name="loginSuccess" value="true" checked="checked">登入成功
+			<input type="radio" name="loginSuccess" value="false" >登入失敗
+		</form>
+		<input type="button" value="test jQuery">
+	</div>
 	
 	<div class="lightRedBack stdMajorBlock stdMargin stdPadding">
-		<div>
-			<form>
-				<input type="radio" name="loginType" value="normal" checked="checked">一般登入
-				<input type="radio" name="loginType" value="facebook">FB登入
-			</form>
-		</div>
+		<p>一般登入</p>
 		<span>帳號</span><input id="jamACC" type="text"><br>
 		<span>密碼</span><input id="jamPW" type="password"><br>
-		<input id="jamLogin" type="button" value="登入">
+		<input id="jamLoginNormal" type="button" value="登入">
 		<p>登入的狀態顯示於下方:</p>
 		<p  id="responder" class="lightGrayBack">顯示用欄位</p>
 	</div>
+	
+	
+	<div class="lightBlueBack stdMajorBlock stdMargin stdPadding">
+		<p>以FB登入</p>
+		<input id="jamLoginFB" type="button" value="FB登入">
+		<p>登入的狀態顯示於下方:</p>
+		<p  id="responder" class="lightGrayBack">顯示用欄位</p>
+	</div>
+	
 
 </body>
 </html>
