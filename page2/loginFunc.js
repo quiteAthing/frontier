@@ -7,15 +7,16 @@
  $(document).ready(function(event){
 	 
 		
-	$('#jamLoginNormal').on("click",testPW);
-	$('#jamLoginFB').on("click",getFbLogin)
+	$('#jamLoginNormal').on("click",loginNormal);
+	$('#jamLoginFB').on("click",loginFB);
 	 
 	 
  });
  
  var isWaiting=false;
  
- function testPW(event){
+ function loginNormal(){
+	 
 		var str=$('#jamACC').val()+$('#jamPW').val();
 		$("#responder").html(str);
 		
@@ -27,14 +28,17 @@
  }
  
  function getAccIden(type,jsonData){
-	 var callURL=loginURL+"?type="+type;
+	 var callURL=loginURL+"?type="+type+"&dummyResult="+$("#dummySta").is(":checked");
 	 console.log("callURL   "+callURL);
 	 var xhr=new XMLHttpRequest();
 
 		xhr.onreadystatechange=function(){
 		 console.log("sta"+this.readyState);
-		if(xhr.readyState==1){xhr.send(jsonData);}
-	 if(xhr.readyState==4&&xhr.status==200){console.log("receive : "+xhr.responseText);}
+		if(this.readyState==1){this.send(jsonData);}
+	 if(this.readyState==4&&xhr.status==200){
+		 var resp=JSON.parse(this.responseText);
+		 $("#responder").html(resp["logStatus"]);
+		 console.log("receive : "+xhr.responseText);}
 	 };			 
 		 xhr.open("post",callURL,true);
  }
@@ -43,8 +47,10 @@
  
  
  //fb使用的方法
- function getFbLogin(){
-	 console.log(loginFbURL);
+ function loginFB(){
+	 var data=new Object();
+	 data.fbID="123456789";
+	 getAccIden("FB",JSON.stringify(data));
 	 /* 
 	 var fbLog=getLogin();
 	 if(fbLog=="connected"||fbLog=="not_authorized"){
@@ -55,6 +61,9 @@
 	 }
  */		
  }
+ 
+ 
+ 
  
  function showIsCheck(){
 	 isWaitng=!isWaiting;
