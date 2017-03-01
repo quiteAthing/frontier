@@ -1,4 +1,16 @@
 
+/*
+這個檔案供index.html使用。
+此檔案需要：
+	backgroundTasks.js
+	linker_xx.js
+	initFb.js
+	onDisplayInfo_index.js
+	
+	
+附屬於此頁的專用js檔案有：
+	logging.js
+*/
 
 
 $(document).ready(changeState);
