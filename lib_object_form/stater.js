@@ -4,6 +4,10 @@
 var stater=new Object();
 
 stater.state="not_initialized";
+stater.state_ni="not_initialized";
+stater.state_li="logged_in";
+stater.state_lt="logged_out";
+stater.em_for=true;
 stater.cookieKey=jam_cookie_key;
 stater.bgt="請傳入bgts物件"
 
@@ -33,5 +37,29 @@ stater.setBgts=function(){
 		case "initialized";this.bgt.bgtLoggedOut();break;
 		default:alert("你是不是哪裡打錯了");
 	}
+	
+}
+
+//假設state=not initialized
+stater.doInit=function(){
+	console.log("init something here and then checkState");
+	this.checkState();
+}
+
+//檢查state
+stater.checkState=function(){
+	var newState="";
+		if(this.state!=this.state_ni){
+			if(mem.logged_in()){
+				newState=this.state_li;
+			}else{
+				newState=this.state_lt;
+			}
+		}else{
+			this.doInit();
+		}
+		
+	}
+	
 	
 }

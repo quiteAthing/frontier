@@ -9,7 +9,7 @@ const btn_register="#reg-submit";//註冊按鈕
 const field_ACC="#signup-email";//帳號欄
 const fieldPW="#signup-password";//密碼欄
 const fieldCPW="#signup-password-confirm";//確認密碼
-const fieldRemember_me="remember-me";//記住我
+const fieldRemember_me="#remember-me";//記住我
 
 
 //會員資料編輯畫面
