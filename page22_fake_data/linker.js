@@ -29,6 +29,7 @@ const sta_notLoggedIn=1;
 const sta_loggedIn=2;
 const loginURL="";
 const loginFbURL="";
+const sys_bgt_interval=30000;//系統背景作業被呼叫的次數，預設為三十秒一次。
 //cookie 所屬的網域名稱，測試用
 //const base_path="";
 const c_loginType="loginType";
