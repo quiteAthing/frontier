@@ -20,7 +20,7 @@ function setup(){
 		var cmt=cmmt.value;
 		var count=0;
 		
-		}
+		
 		if(event.keyCode>=37& event.keyCode<=40){
 			console.log("prevent");
 			return null;
@@ -38,6 +38,7 @@ function setup(){
 		rsp2.innerHTML=cmt.length;
 		
 		
+		}
 	}
 	
 	
