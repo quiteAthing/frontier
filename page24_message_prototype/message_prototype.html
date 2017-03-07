@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+
+	<script src="../../jam_lib/linker.js"></script>    
+	<!--<script src="_997_framework/js/initFB.js"></script>  FB因為需要在伺服器上才能運作所以註解掉-->
+    <script src="../../jam_lib/memberFunction.js"></script>
+    <script src="../../jam_lib/backgroundTasks.js"></script>
+    <script src="../../jam_lib/stater.js"></script>
+    <script src="../../jam_lib/message_system.js"></script>
+	<script src="../../init_fake.js"></script>
+	
+	<title>message prototype</title>
+</head>
+<body>
+	
+	<p>
+	這邊是一個msg系統的原型。
+	</p>
+	
+	<span>使用者id:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span id="responder"></span><br>
+	<span>使用者登入成功:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span id="responder2"></span><br>
+	<span>使用者nickname:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span id="responder3"></span>
+	
+	<input type="button" value="檢查新信"><br>	
+	<p>新信</p><span id="newMessage"></span>
+	<div id="mails" style="height:500px; width:920px;background:#aaffaa">
+		<p class="nxx_msgbody">假訊息</p>
+		<p class="nxx_msgbody">假訊息</p>
+		<p class="nxx_msgbody">假訊息</p>
+	
+	</div>
+	
+	<br><br>
+	
+	<div  style="height:500px; width:920px;background:#aaffaa">
+		<input type="text" id="mailto">
+		<textarea id="msgtype"></textarea>
+	
+	</div>
+	
+	<br><br>
+	<input type="button" id="send_msg" value="發送信件">
+	
+	
+	
+
+</body>
+</html>
