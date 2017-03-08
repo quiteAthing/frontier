@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+	<script src="jq311.js"> </script>
 
 	<script src="../../jam_lib/linker.js"></script>    
 	<!--<script src="_997_framework/js/initFB.js"></script>  FB因為需要在伺服器上才能運作所以註解掉-->
@@ -10,7 +10,8 @@
     <script src="../../jam_lib/backgroundTasks.js"></script>
     <script src="../../jam_lib/stater.js"></script>
     <script src="../../jam_lib/message_system.js"></script>
-	<script src="../../init_fake.js"></script>
+	<script src="../../jam_lib/liar.js"></script>
+	<script src="init_msg_proto.js"></script>
 	
 	<title>message prototype</title>
 </head>
@@ -24,25 +25,37 @@
 	<span>使用者登入成功:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span id="responder2"></span><br>
 	<span>使用者nickname:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span id="responder3"></span>
 	
-	<input type="button" value="檢查新信"><br>	
+	<input id="checkMail" type="button" value="檢查新信"><br>
+	<input id="getMail" type="button" value="接收信件內容"><br>
 	<p>新信</p><span id="newMessage"></span>
-	<div id="mails" style="height:500px; width:920px;background:#aaffaa">
-		<p class="nxx_msgbody">假訊息</p>
-		<p class="nxx_msgbody">假訊息</p>
-		<p class="nxx_msgbody">假訊息</p>
-	
-	</div>
+		<div id="msgBox">
+			<div id="msgModel" style="display : none;">
+				<div style="background :#aaaaff ; margin :5px auto;">
+					<span>Title :</span><p class="nxx_msgTitle"></p>
+					<span> sender:</span><p class="nxx_msgSender"></p>
+					<span>senderNk:</span><p class="nxx_msgSenderNk"></p>
+					<span>date:</span><p class="nxx_msgDate"></p>
+					<span>msgId:</span><p class="nxx_msgId"></p>
+					<span>msgBody:</span><p class="nxx_msgBody"></p>
+					<p class="nxx_msgRead"></p>
+				</div>
+			</div>
+		
+		</div>
 	
 	<br><br>
 	
 	<div  style="height:500px; width:920px;background:#aaffaa">
 		<input type="text" id="mailto">
-		<textarea id="msgtype"></textarea>
+		<input type="text" id="mesTitle">
+		<textarea id="msgArea"></textarea><br>
+		<p id="responder4">0000</p>
 	
 	</div>
 	
 	<br><br>
-	<input type="button" id="send_msg" value="發送信件">
+	<input type="button" id="send_msg" value="發送信件"><br>
+	<p id="responder5"></p>
 	
 	
 	
