@@ -1,0 +1,86 @@
+﻿登入：
+
+	servlet :jam/login
+	送過去：{"acc":String , "pw":String}
+	收到：{"loginSuccess": true/false }
+	
+	登入─成功後再接收{"userId":String,"nickName":String,"messageNum":int,"sessionId":String}
+	
+註冊：
+	servlet :jam/register
+	送過去：{"acc":String,"pw":String}(一般)/{"fbUID":String}
+	收到：{"regSuccess" : true/false}
+	
+檢查帳號是否存在：
+	servlet :jam/checkAcc
+	送過去：{"acc":String}
+	收到：{"accExt":true/false}
+
+	
+	
+資料編輯：
+	servlet:jam/memberEdit
+	送過去：{"pic":base64 ,"instrument":array<String>,"intro":String,"mediaLink":array<String>}
+	
+檢視會員資料：
+	servlet:jam/memberData
+	送過去:{"sessionId":String}/cookie
+	送回來：{"pic":base64 ,"instrument":array<String>,"intro":String,"mediaLink":array<String>}
+	
+-------------------------------------------------------------------------------------------------------------------------
+
+/messageBox :讀取的所有功能
+	請求json物件格式
+p.s "|(直線)"代表or，或。
+
+{
+	servType:"newMsg"|"getMsg"|, //要求的功能類型，newMsg：詢問是否有新信、getMsg：取得指定範圍(/時間\、數量=10)內的訊息。
+	
+	rangeType:"date"|"idrange"|"" // 要求是取得訊息內容時，以何種方式定義範圍，date：開始、結束	日期。idrange:id範圍。
+
+	rngStart:value1  //取得範圍的起始
+		}
+
+	回傳json物件：msg物件陣列
+	{	result :如果是詢問是否有新訊息時，傳回result，並帶一個整數值 ，-1表示沒有新信。
+		msgs:[{msg},{msg},{msg},{msg}....]}
+msg 格式
+{
+	sendId :""//寄件者id
+	sendNk :""//寄件者nickname	
+	msgBody :"" //訊息本體
+	msgId :"" //訊息id
+	msgTitle :""//訊息標題
+	msgDate : //發信日期
+	msgState: true | false //已讀未讀
+}
+
+------------------------------------------------------------
+
+/sendMsg :傳送訊息的所有功能
+	請求json物件格式
+{
+	sender: sender id,//寄件者id
+	toUser :user_id ,//傳送對象
+	title : "" ,//訊息標題
+	msg : ..... ,//訊息本體
+}
+
+	回傳物件格式
+{
+	sent :true|false //是否成功送出信件。
+	
+	
+}
+
+
+----------------
+/msgRead :未讀信件被打開時傳送給伺服器知道以更新資料庫內容。
+
+parameter :
+		msgId :數字  被打開的信.
+
+	{unread: true|false }
+
+
+其他功能：java bean
