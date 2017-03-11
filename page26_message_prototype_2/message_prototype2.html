@@ -11,7 +11,7 @@
     <script src="../../jam_lib/stater.js"></script>
     <script src="../../jam_lib/message_system.js"></script>
 	<script src="../../jam_lib/liar.js"></script>
-	<script src="init_msg_proto.js"></script>
+	<script src="init_msg_proto2.js"></script>
 	
 	<title>message prototype</title>
 </head>
@@ -29,8 +29,10 @@
 	<input id="getMail" type="button" value="接收信件內容"><br>
 	<p>新信</p><span id="newMessage"></span>
 		<div id="msgBox">
+		<input type="checkbox" id="selectAll" style="background:#4444ff" checked="false" defaultChecked="false">
 			<div id="msgModel" style="display : none;">
 				<div style="background :#aaaaff ; margin :5px auto;">
+					<input id="ssds" type="checkbox" defaultChecked="false" value="msg" name="swww" >
 					<span>Title :</span><p class="nxx_msgTitle"></p>
 					<span> sender:</span><p class="nxx_msgSender"></p>
 					<span>senderNk:</span><p class="nxx_msgSenderNk"></p>
@@ -45,7 +47,7 @@
 	
 	<br><br>
 	
-	<div  style="height:500px; width:920px;background:#aaffaa">
+	<div  style="height:300px; width:920px;background:#aaffaa">
 		<input type="text" id="mailto">
 		<input type="text" id="mesTitle">
 		<textarea id="msgArea"></textarea><br>
