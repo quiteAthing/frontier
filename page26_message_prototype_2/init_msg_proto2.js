@@ -31,7 +31,7 @@ function setup(){
 			req={
 				user_id : 1,
 				servType : "getMsg",
-				rngStart : msg.msgRng[1]
+				rngStart :  msg.msgRng[1]
 				};
 				//這邊未來要以callback的方式呼叫
 			msg.showOnNewMessage(liar.fakeMailbox(req));
@@ -39,8 +39,6 @@ function setup(){
 	}
 	
 	msg.sendMessage=function(msg){
-		console.log("success");
-		console.log(msg);
 		msg.showOnMsgSent;
 	}
 	
@@ -51,12 +49,11 @@ function setup(){
 	function deleteMsg(){
 		var amtSelected=msg.msgSelected.length;
 		if(msg.msgSelected.length==0){
-			console.log("nothing to delete");
 			return null;
 		}
 		if(confirm("確定刪除所選訊息?")){
 				for(var r=0;r<amtSelected;r++){
-				var msgId="#msgId_"+msg.msgSelected[r];
+				var msgId="#"+msg.idStr+msg.msgSelected[r];
 				$(msgId).remove();
 				msg.msgSelected.splice(r,1);
 			}
@@ -71,18 +68,18 @@ function setup(){
 	
 	function onSelectAll(event){
 		var selection=$("[id^='msgId_']").find(".nxx_msgId").get();
-		console.log("x:"+event.target.checked);
-		console.log("y:"+this.checked)
 		if(event.target.checked){
-				msg.msgSelected=[];
 				console.log("deleted");
+				for(var i=0;i<selection.length;i++){
+					selection[i].checked=false;
+				}
+				msg.msgSelected=[];
 		}
 		else{
 			for(var i=0;i<selection.length;i++){
 					msg.msgSelected.push(selection[i].innerHTML);
 					selection[i].checked=true;
 				}
-			console.log(msg.msgSelected);
 			}
 
 			
@@ -110,7 +107,6 @@ msg.showOnCheck=function(chk){
 	$("#new_msg").html(chk.result);	
 }
 
-msg.msgIdstr="msgId_";
 msg.showOnNewMessage=function(message){
 	var messages=message.msgs;
 	msg.totalInbox=message.result;
@@ -119,7 +115,7 @@ msg.showOnNewMessage=function(message){
 		if(msg.msgRng[1]<messages[i].msgId){msg.msgRng[1]=messages[i].msgId;}
 		msg.msgAll.push(messages[i].msgId);
 		r=msgModel.clone(true);
-		
+		msg.msgLocal+=1;
 		r.find(".nxx_msgTitle").html(messages[i].msgTitle);
 		r.find(".nxx_msgBody").html(messages[i].msgBody);
 		r.find(".nxx_msgId").html(messages[i].msgId);
@@ -131,11 +127,11 @@ msg.showOnNewMessage=function(message){
 		r.addClass("nxx_msg");
 		r.attr("value","onHidden");
 		$(".nxx_pages").html(Math.ceil(i/10));
-		r.prop("id","msgId_"+messages[i].msgId.toString());
+		r.prop("id",msg.idStr+messages[i].msgId.toString());
 		r.appendTo("#msgBox");
 		
 	}
-	msgOnScreen()
+	msgOnScreen();
 	
 	
 
@@ -168,7 +164,7 @@ msg.showOnNewMessage=function(message){
 function deleteMsg(){
 	//刪除訊息
 	for(var i=0;i<msg.msgSelected;i++){
-		var id="#msgId_"+msg.msgSelected[i];
+		var id="#"+"#"+msg.idStr+msg.msgSelected[i];
 		$(id).remove();
 		var tgt=msg.msgAll.indexOf(msg.msgSelected[i])
 		msg.msgAll.splice(tgt,1);
@@ -229,7 +225,14 @@ function swapPage(event){
 		var limit=msg.msgAll.length-start-1;
 		if(limit>10){limit=10;}
 		if(limit==0){
-			console.log("nomore");return;
+			if(msg.msgLocal<msg.totalInbox){
+				console.log("getNewMessage");
+				msg.getMessage();
+			}else{
+				console.log("nomore on server");
+				return;
+			}
+			
 		}
 		for(var g=0;g<onScr.length;g++){
 			$(onScr[g]).css("display","none");
@@ -237,10 +240,9 @@ function swapPage(event){
 		}
 		var st=start+limit;
 		for(var i=start;i<=st;i++){
-				var msgId="#msgId_"+msg.msgAll[i];
+				var msgId="#"+msg.idStr+msg.msgAll[i];
 				$(msgId).css("display","block");
 				$(msgId).attr("value","onDisplay");
-				
 		}
 		
 		
@@ -251,7 +253,7 @@ function swapPage(event){
 		var seek=parseInt($(onScr[0]).find(".nxx_msgId").html());
 		var start=msg.msgAll.indexOf(seek);
 		var stop=0;
-		if(start==0){console.log("return"); return;}
+		if(start==0){ return;}
 		if(start-10>0){
 			stop=start-10;
 		}else{
@@ -264,7 +266,7 @@ function swapPage(event){
 			$(onScr[g]).attr("value","onHidden");			
 		}
 		for(var q=start;q>stop;q--){
-			var msgId="#msgId_"+msg.msgAll[q];
+			var msgId="#"+msg.idStr+msg.msgAll[q];
 			$(msgId).css("display","block");
 			$(msgId).attr("value","onDisplay");
 		}
