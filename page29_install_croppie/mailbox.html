@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MailBox</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="_997_framework/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="_997_framework/font-awesome-4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="_997_framework/css/reset.css">
+    <link rel="stylesheet" href="_997_framework/css/style.css">
+    <link rel="stylesheet" href="_997_framework/css/queries.css">
+    <link rel="stylesheet" href="_997_framework/css/bootstrap-social.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Jam</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-envelope-o" fa-5x aria-hidden="true" ></i><span class="badge">1<span></a></li>
+                    <li><a href="#" class="login">登入</a></li>
+                    <li><a href="#" class="signup">註冊</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- 收件匣頁面 -->
+    <div class="mailbox-page">
+        <div class="mailbox-container">
+            <div class="mailbox-list-wrapper">
+                <div class="mailbox-list">
+                    <form class="mailbox-del-form" action="">
+                        <table id="msgBox" class="mailbox-table-body">
+                            <tr id="mailbox-list-tr-title">
+                                <td class="mail-td-delete">
+                                    <input name="mail-del-all" type="checkbox" id="mail-del-all">
+                                </td>
+                                <td class="mail-td-sender">
+                                    寄件人
+                                </td>
+                                <td class="mail-td-subject">
+                                    主旨
+                                </td>
+                                <td class="mail-td-date">
+                                    時間
+                                </td>
+                            </tr>
+                            <tr  id="msgModel" class="mailbox-list-tr">
+                                <td class="mail-td-delete" id="mail-del">
+                                    <input name="mail-del" type="checkbox">
+                                </td>
+                                <td class="mail-td-sender nxx_msgSender">
+                                    abc1345676455asd1123asdasdasdasdda
+                                </td>
+                                <td class="mail-td-subject nxx_msgTitle">
+                                    [徵才] 台北種子團隊徵前後端/UIUX 正/兼職 實習
+                                </td>
+                                <td class="mail-td-date nxx_msgDate">
+                                    2017/03/05
+                                    <p class="nxx_msgBody" style="display:none;"></p>
+                                </td>
+
+                            </tr>
+                            <tr class="mailbox-list-tr">
+                                <td class="mail-td-delete" id="mail-del">
+                                    <input name="mail-del" type="checkbox">
+                                </td>
+                                <td class="mail-td-sender">
+                                    abc1345676455asd1123asdasdasdasdda
+                                </td>
+                                <td class="mail-td-subject">
+                                    [徵才] 台北種子團隊徵前後端/UIUX 正/兼職 實習
+                                </td>
+                                <td class="mail-td-date">
+                                    2017/03/05
+                                </td>
+                            </tr>
+                            <tr class="mailbox-list-tr">
+                                <td class="mail-td-delete" id="mail-del">
+                                    <input name="mail-del" type="checkbox">
+                                </td>
+                                <td class="mail-td-sender">
+                                    abc1345676455asd1123asdasdasdasdda
+                                </td>
+                                <td class="mail-td-subject">
+                                    [徵才] 台北種子團隊徵前後端/UIUX 正/兼職 實習
+                                </td>
+                                <td class="mail-td-date">
+                                    2017/03/05
+                                </td>
+                            </tr>
+                            <tr class="mailbox-list-tr">
+                                <td class="mail-td-delete" id="mail-del">
+                                    <input name="mail-del" type="checkbox">
+                                </td>
+                                <td class="mail-td-sender">
+                                    abc1345676455asd1123asdasdasdasdda
+                                </td>
+                                <td class="mail-td-subject">
+                                    [徵才] 台北種子團隊徵前後端/UIUX 正/兼職 實習
+                                </td>
+                                <td class="mail-td-date">
+                                    2017/03/05
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="mailbox-bottom">
+                    <div class="mailbox-bottom-inline">
+                        <button class="form-btn mailist-btn mail-delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="form-btn mailist-btn mail-prev-btn"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                        <button class="form-btn mailist-btn mail-next-btn"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="mailbox-content-wrapper">
+                <div class="mailbox-content-header">
+                    <h2>主旨</h2>
+                    <span>寄件人</span>
+                </div>
+                <div class="mailbox-content">
+                    <p>我是內容我是內容我是內容 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officiis ullam libero quam aliquam, totam ducimus enim optio quis quae, tenetur dolor incidunt praesentium dolorum laborum tempora suscipit quo sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nesciunt vel cumque officiis id ut incidunt omnis impedit amet sapiente doloremque ducimus saepe error dolor fugiat, possimus laborum. Accusantium, itaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam nisi molestias vel fugit id rem nam optio debitis minima temporibus blanditiis ipsa qui, repellat dolore facere architecto. Qui, eum, eligendi? 我是內容我是內容我是內容 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officiis ullam libero quam aliquam, totam ducimus enim optio quis quae, tenetur dolor incidunt praesentium dolorum laborum tempora suscipit quo sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nesciunt vel cumque officiis id ut incidunt omnis impedit amet sapiente doloremque ducimus saepe error dolor fugiat, possimus laborum. Accusantium, itaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam nisi molestias vel fugit id rem nam optio debitis minima temporibus blanditiis ipsa qui, repellat dolore facere architecto. Qui, eum, eligendi?</p>
+                </div>
+                <div class="mailbox-reply">
+                    <textarea placeholder="按這裡回覆信件" class="mailbox-reply-textarea" name="" id="mail-reply-content"></textarea>
+                </div>
+                <div class="mailbox-reply-bottom">
+                    <button class="form-btn mailist-btn return-to-mailbox-list-btn" id="return-to-mailbox-list-btn"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>返回</button>
+                    <button class="form-btn mailist-btn mail-delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button class="form-btn mailist-btn mailbox-reply-btn">回覆</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <span>Jam Corporation © 2017  </span>
+        <span>連絡我們</span>
+        <i class="fa fa-facebook-square" aria-hidden="true">粉絲頁</i>
+        </p>
+    </div>
+    <script src="_997_framework/jquery-3.1.1.min.js"></script>
+    <script src="_997_framework/js/liar.js"></script>
+    <script src="_997_framework/js/message_system.js"></script>
+    <script src="_997_framework/js/main.js"></script>
+    <script src="_997_framework/bootstrap/js/bootstrap.min.js"></script>
+    <script src="_997_framework/js/init_msg_proto.js"></script>
+</body>
+
+</html>

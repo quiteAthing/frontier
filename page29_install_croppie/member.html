@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="_997_framework/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="_997_framework/font-awesome-4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="_997_framework/css/reset.css">
+    <link rel="stylesheet" href="_997_framework/css/style.css">
+    <link rel="stylesheet" href="_997_framework/css/queries.css">
+    <link rel="stylesheet" href="_997_framework/css/bootstrap-social.css">
+    <link rel="stylesheet" href="_997_framework/css/croppie.css">
+	
+    <title>Member</title>
+</head>
+
+<body>
+<!--croppie installation-->
+	<div>
+		<div id="cropArea" style="position:fixed;z-index:30;width:80%; height:350px;top:100px;left:10%; background:red;display:none;">
+			<input id="crop" type="button" style="position:fixed; z-index:31; width:80px;height:30px; top:300px;left:40%" value="裁切圖片">
+			<canvas id="cropboard" style="display:none;" width="140" height=140>You shouldn't see this.</canvas>
+		</div>
+		
+	</div>
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Jam</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- 登入前顯示 -->
+                    <li><a href="#" class="login" id="nav-login">登入</a></li>
+                    <li><a href="#" class="signup" id="nav-signup">註冊</a></li>
+                    <!-- 登入後顯示 -->
+                    <li  ><a href="mailbox.html" " id="nav-myinbox-btn"><i  class="fa fa-envelope-o" fa-5x aria-hidden="true" ></i><span class="badge">1<span></a></li>
+                    <li><a id="nav-my-member-link" href="member.html" class="my-member-link">我的 Jam</a></li>
+                    <li><a id="nav-logout" href="#" class="nav-logout">登出</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="member-bg-img">
+    </div>
+    <!-- 登入/註冊畫面 -->
+    <div class="user-modal">
+        <!-- this is the entire modal form, including the background -->
+        <div class="user-modal-container">
+            <!-- this is the container wrapper -->
+            <ul class="switcher">
+                <li><a href="#0">登入</a></li>
+                <li><a href="#0">註冊</a></li>
+            </ul>
+            <div id="login">
+                <!-- log in form -->
+                <form class="form">
+                    <a class="btn btn-block btn-social btn-facebook">
+                        <span class="fa fa-facebook"></span> 使用Facebook登入
+                    </a>
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                        <span class="error-message">Error message here!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signin-password">Password</label>
+                        <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="密碼">
+                        <span class="error-message">Error message here!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input type="checkbox" id="remember-me" checked>
+                        <label for="remember-me">記得我</label>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width" id="login-submit" type="submit" value="登入">
+                    </p>
+                </form>
+                <p class="form-bottom-message"><a href="#0">忘記密碼?</a></p>
+                <a href="#0" class="close-form">Close</a>
+            </div>
+            <!-- login -->
+            <div id="signup">
+                <!-- sign up form -->
+                <form class="form" action="" method="">
+                    <a class="btn btn-block btn-social btn-facebook">
+                        <span class="fa fa-facebook"></span> 使用Facebook註冊
+                    </a>
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                        <span class="error-message">此帳號已被註冊!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signup-password">Password</label>
+                        <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="密碼">
+                        <!-- <a href="#0" class="hide-password">隱藏密碼</a> -->
+                        <span class="error-message">請使用8位元-16位元的英文及數字組成密碼!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signup-password">Password</label>
+                        <input class="full-width  has-padding has-border" id="signup-password-confirm" type="text" placeholder="確認密碼">
+                        <!-- <a href="#0" class="hide-password">隱藏密碼</a> -->
+                        <span class="error-message">密碼不一致!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input type="checkbox" id="accept-terms">
+                        <label for="accept-terms">我同意 <a href="#0" class="terms">使用條款與規範</a></label>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width has-padding" id="reg-submit" type="submit" value="註冊">
+                    </p>
+                </form>
+                <!-- <a href="#0" class="close-form">Close</a> -->
+            </div>
+            <!-- signup -->
+            <div id="reset-password">
+                <!-- reset password form -->
+                <p class="form-message">忘記密碼?請填入註冊信箱，我們將會寄一組新的密碼給您</p>
+                <form class="form">
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                        <span class="error-message">Error message here!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="重設密碼">
+                    </p>
+                </form>
+                <p class="form-bottom-message"><a href="#0">回到登入畫面</a></p>
+            </div>
+            <a href="#0" class="close-form">Close</a>
+        </div>
+    </div>
+    <!-- 站內信modal -->
+    <div class="mailbox-modal">
+        <div class="mailbox-modal-container">
+            <div class="mailbox-body">
+                <div class="mailbox-header">
+                    <form action="">
+                        <div class="mail-title">
+                            <label for="mail-title">主旨</label>
+                            <br>
+                            <label for="recipient">收件者</label>
+                            <br>
+                        </div>
+                        <div class="mail-input">
+                            <input type="text" class="mail-input" id="mail-title">
+                            <br>
+                            <input type="text" class="mail-input" id="recipient">
+                            <br>
+                        </div>
+                </div>
+                <div class="mail-content">
+                    <div class="mail-title">
+                        <label for="mail-content">內容</label>
+                    </div>
+                    <div class="mail-input content">
+                        <textarea name="" class="mail-textarea" id="mail-content"></textarea>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="mail-footer">
+                <button class="form-btn send" id="mail-submit" type="submit">寄出</button>
+            </div>
+        </div>
+    </div>
+    <!-- 會員資料編輯跳出頁面 -->
+    <div class="member-edit-modal">
+        <div class="member-edit-modal-container">
+            <div class="member-edit-header">
+                <h1>會員簡介編輯</h1>
+            </div>
+            <form class="member-edit-form">
+                <div class="member-edit-body">
+                    <div class="member-edit-image">
+                        <img class="profolio-img" id="preview-pic" />
+                        <label for="member-name" class="member-form-label-text">個人照片</label>
+                        <input type="file" id="update-member-pic">
+                    </div>
+                    <div class="member-edit-name">
+                        <label for="member-name" class="member-form-label-text">名稱</label>
+                        <input type="text" class="member-input name" id="update-member-name">
+                    </div>
+                    <div class="member-edit-instruments">
+                        <label for="member-instruments" class="member-form-label-text" id="member-instruments-label">樂器專長</label>
+                        <button type="button" class="form-btn instruments-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button type="button" class="form-btn instruments-minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="member-edit-name">
+                        <label for="member-name" class="member-form-label-text">備用信箱</label>
+                        <input type="text" class="member-input name" id="update-member-email">
+                    </div>
+                    <div class="member-edit-intro">
+                        <label for="member-edit-textarea" class="member-form-label-text">個人經歷簡介</label>
+                        <textarea class="member-edit-textarea" id="update-member-intro"></textarea>
+                    </div>
+                    <div class="member-edit-media">
+                        <label for="member-media" class="member-form-label-text">個人影音連結(限Youtube、SoundCloud)</label>
+                        <button type="button" class="form-btn media-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button type="button" class="form-btn media-minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </form>
+            <footer class="member-edit-footer">
+                <button class="form-btn submit" id="update-member" type="button">儲存</button>
+            </footer>
+        </div>
+    </div>
+    <!-- 會員資料主頁面 -->
+    <section class="profolio info">
+        <div class="profolio-header">
+            <div class="profolio-img-wrapper">
+                <img class="profolio-img" id="member-pic">
+            </div>
+            <div class="edit-wrapper" id="edit-member-btn">
+                <button class="edit-btn"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="profolio-info-text">
+            <h1 class="member-name" id="member-name"></h1>
+            <h2 class="member-skills" id="member-instrument"></h2>
+        </div>
+        <div class="profolio-action">
+            <button class="btn btn-primary mail-btn"><i class="fa fa-envelope-o" fa-4x aria-hidden="true"></i></button>
+        </div>
+        <div class="my-jam-event">
+            <div class="my-jam-event-title">
+                <h2>我的Jam Event</h2>
+            </div>
+            <div class="my-jam-event-link">
+                <ul>
+                    <a href="">
+                        <li>[Jam樂器]吉他:gibson studio 九成新 25000</li>
+                    </a>
+                    <a href="">
+                        <li>[Jam教學]木吉他/電吉他</li>
+                    </a>
+                    <a href="">
+                        <li>[Jam組團]歌德金屬團徵鼓手</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="profolio-about-me-defualt">
+            <p class="test">
+                <span class="firstline-wrapper">
+                <span class="firstline" id="member-intro-hide">
+
+                </span>
+                <button class="abtbtn show">展開</button>
+                </span>
+            </p>
+        </div>
+        <div class="profolio-about-me-show">
+            <p id="member-intro-show">
+            </p>
+            <button class="abtbtn hide">收回</button>
+        </div>
+    </section>
+    <!-- 影音專區 -->
+    <section class="profolio media">
+        <div class="media-title">
+            <h2>個人影音專區</h2>
+        </div>
+		<!--
+        <iframe src="https://www.youtube.com/embed/ZDr1WUr1obM?t=1m25s" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/kwubmgAqLZ4?t=1m25s" frameborder="0" allowfullscreen></iframe>
+        <iframe scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/78236440&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+        <iframe src="https://www.youtube.com/embed/hhxM3RJxJK0" frameborder="0" allowfullscreen></iframe>
+        <iframe scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/74232220&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+        <iframe scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/112420402&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+		-->
+    </section>
+    <!-- footer -->
+    <div class="footer-wrapper">
+        <span>Jam Corporation © 2017  </span>
+        <span>連絡我們</span>
+        <i class="fa fa-facebook-square" aria-hidden="true">粉絲頁</i>
+    </div>
+    <script src="_997_framework/jquery-3.1.1.min.js"></script>
+    <script src="_997_framework/jquery.cookie.js"></script>
+    <script src="_997_framework/js/main.js"></script>
+    <script src="_997_framework/bootstrap/js/bootstrap.min.js"></script>
+	<script src="_997_framework/js/croppie.js"></script>
+	<script src="_997_framework/js/croppie_inst.js"></script>
+    <!--<script>
+	
+        (function () {
+            console.log(8383838);
+            login_Nav();
+            $.ajax({
+                url: '/Jam/loadingMember',
+                type: 'POST',
+                datatype: 'json',
+                data: { LoginId: sessionStorage.getItem('LoginId') }
+            }).done(response => {
+                console.log(response);
+                $("#member-pic").attr("src", response.Member.pic || '');
+                $("#member-instrument").html(response.Member.instrument);
+                $("#member-name").html(response.Member.alias);
+                $("#member-intro-hide").html(response.Member.intro);
+            });
+        })();
+    </script>-->
+</body>
+
+</html>
