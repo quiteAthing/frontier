@@ -1,5 +1,5 @@
 
-
+var termsAccepted=false;
 jQuery(document).ready(function($) {
 	
 	var index_methods=new Object();
@@ -52,15 +52,16 @@ jQuery(document).ready(function($) {
         onMyJamButton = $('#my-jam');
 
 
+
 	stater.checkState(index_methods.login_Nav,index_methods.logout_Nav);
     regSubmit.on("click", onSignupClick);
     loginSubmit.on("click",onLoginClick);
     logoutButton.on("click", onLogoutClick);
-
-    signupEmail.on('keyup', function() {
-        console.log(account);
+	termsAccept.prop("checked",termsAccepted);
+    signupEmail.on('keyup', function(ev) {
 		var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-		var vAcc=document.getElementById(field_ACC).value;
+		console.log(ev.target.value);
+		var vAcc=ev.target.value;
 			if(re.test(vAcc)){
 					mem.validateAcc(vAcc,function(response){
 					  if (response.accExt) {
@@ -71,7 +72,6 @@ jQuery(document).ready(function($) {
 						 };	
 					});				
 			}else{
-				signupEmail.next('span').addClass('is-visible');
 				console.log("wrong email format");	
 			}
     });
@@ -80,7 +80,7 @@ jQuery(document).ready(function($) {
 
 
     function onSignupClick() {
-		
+		console.log("s");
 		var rInfo={
 			type : "normal",
 			acc : signupEmail.val(),
@@ -106,6 +106,7 @@ jQuery(document).ready(function($) {
 			};
 			
 			mem.login(info,function(resp){
+				if(response == undefined){console.log("failed");return;}
 				if (response.loginSuccess) {
                     console.log(response);
                     index_methods.index_methods.login_Nav();
@@ -162,34 +163,44 @@ jQuery(document).ready(function($) {
     });
     //確認註冊密碼是否符合規則
     signupPassword.on('keyup',function(){
-		password_rule(this.value);
+		if(password_rule(this.value)){
+			$(this).find("error-message").hide();
+		}else{
+			$(this).find("error-message").show();
+		}
 	});
 
     //註冊確認密碼不一致
     passwordConfirm.on('keyup',function(){
-		console.log(password_different([this.value,signupPassword.val()]));
-		
+	if(password_different([this.value,signupPassword.val()])){
+            $(this).find("error-message").hide();
+	}else{
+		  $(this).find("error-message").show();
+	}
+		check_all_field();
 		
 		
 	});
 	
     termsAccept.on('click', function(){	
+	 termsAccept=$(this).prop("checked");	
+	 check_all_field();
+	});
 	
-        if ($(this).prop("checked") && password_different([signupPassword.val(),passwordConfirm.val()])) {
+	function check_all_field(){
+		if ( termsAccept && password_different([signupPassword.val(),passwordConfirm.val()])) {
             regSubmit.removeAttr('disabled');
         } else {
             regSubmit.attr('disabled', 'disabled');
 			}	
-	});
-
+	}
+	
 	
 	function password_rule(value) {
         var rule = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]).{7,15}$/;
         if (rule.test(value)) {
-            $(this).next('span').removeClass('is-visible');
             return true;
         } else {
-            $(this).next('span').addClass('is-visible');
             return false;
         }
 
@@ -201,15 +212,14 @@ jQuery(document).ready(function($) {
 		
 		if(pwsu.length==pwcfn.length){
 			if(!password_rule(pwsu) || !password_rule(pwcfn)){
-				console.log("a");
+				passwordConfirm.find("error-message").show();
 				return false;}
 			if (val[0].toString() === val[1].toString()) {
-				console.log("b");
-			passwordConfirm.next('span').removeClass('is-visible');
+			passwordConfirm.find("error-message").hide();
             return true;
 			} else {
 				console.log("c");
-				passwordConfirm.next('span').addClass('is-visible');
+				passwordConfirm.find("error-message").show();
 				return false;}
 		}else{
 			console.log("d");
