@@ -30,13 +30,14 @@ function setup_msg(){
 	$("#mail-del-all").on("click",onSelectAll);
 	$("#msgArea").on("keyup",checkLength);
 	$("#send_msg" ).on("click",sendMessage);
-	
 	$("#mail-del-all").prop("checked",false);
 	var msgModel=$("#msgModel");
+	msgModel.find(":checkbox").on("change",onSelectOne);
+	msgModel.children().not(".mail-td-delete").on("click",showMessage);
 	//把方法放全域變數中方便取用。
 	msg.showNewMessage=function(message){
 			var messages=message.msgs;
-			msgModel.find(":checkbox").on("change",onSelectOne);
+			
 			msg.totalInbox=message.result;
 				for(var i=0;i<messages.length;i++){
 					if(msg.msgRng[0]>messages[i].msgId){msg.msgRng[0]=messages[i].msgId;}
@@ -150,7 +151,12 @@ function setup_msg(){
 				}
 			}
 
-			
+	}
+	
+	
+	function showMessage(){
+		console.log("showwwww");
+		$("#mail_detail").addClass("is-visible");
 		
 	}
 	
