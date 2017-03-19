@@ -80,13 +80,12 @@ linker element:
 								break;
 				}
 			}
-				xhr.open("POST",base_url+service_mailbox,true);
+				xhr.open("POST",base_url+service_messagebox,true);
 				msg.isChecking=true;
 				
 				console.log(msg.isChecking);
-			}
-			
-			
+		}	
+
 		
 		
 		
@@ -99,6 +98,7 @@ linker element:
 				servType : "getMsg",
 				rngStart : msg.msgRng[0]
 				};
+				
 			
 			var xhr=new XMLHttpRequest();
 			xhr.onreadystatechange=function(res){
@@ -117,7 +117,7 @@ linker element:
 					default :console.log(xhr.status);break;
 				}
 			}
-			xhr.open("POST",base_url+service_mailbox,true);
+			xhr.open("POST",base_url+service_messagebox,true);
 			
 			
 		}

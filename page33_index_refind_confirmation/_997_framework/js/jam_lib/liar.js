@@ -17,6 +17,7 @@
 	 
 	 function fakeLogin(){
 		 document.cookie=kie.setCookieObj(jam_cookie_key,fakeCookie);	 
+		 localStorage.setItem("requested_user","isMySelf");
 	 }
 	 
 	 var fakeCookie={

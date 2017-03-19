@@ -25,6 +25,8 @@
 	function logout(){
 	//這邊需要增加server log out 的方法
 		kie.cleanCookie(mem.cookieKey,"");
+		localStorage.clear();
+		sessionStorage.clear();
 		var xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==0){
@@ -111,12 +113,9 @@
 				FB.louout(function(){console.log("fbLogOut");});
 				fbUinfo=null;
 				}
-			});
-
-		
+			});	
 		return fbUinfo;
 	}
-	
 	
 	function jamLogin(uInfo,cbf){			
 			//送出一個xhr到jam的伺服器，然後等待回應

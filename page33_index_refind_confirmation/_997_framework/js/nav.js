@@ -3,7 +3,7 @@
 function setup_nav() {
 	var termsAccepted=false;
 	var index_methods=new Object();
-
+	
 	index_methods.login_Nav = function() {
 		$(".nav").find(".nav_li").show();
 		$(".nav").find(".nav_lt").hide();
@@ -51,16 +51,19 @@ function setup_nav() {
         logoutButton = $('.logout'),
         editMemberButton = $('#edit-member-btn'),
         onMyJamButton = $('#my-jam');
-
-
-
-	stater.checkState(onLoggedin,index_methods.logout_Nav);
-	function onLoggedin(){
+		
+	if(mem.loggedin()){
 		var info=kie.getCookieJson(jam_cookie_key);
 		console.log(info);
 		$("#fb-loging-name").html(info.alias);
 		index_methods.login_Nav();	
+	}else{
+		index_methods.logout_Nav();
 	}
+
+
+
+
 	
     regSubmit.on("click", onSignupClick);
     loginSubmit.on("click",onLoginClick);
