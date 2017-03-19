@@ -14,7 +14,8 @@ jQuery(document).ready(function($) {
 	index_methods.logout_Nav = function() {
 		$(".nav").find(".nav_li").hide();
 		$(".nav").find(".nav_lt").show();
-
+		mem.logout();
+		//reload的時候就會觸發 $(document).ready裡的方法重新判斷登入狀態。
 	};
 
 	index_methods.close_modal = function() {
@@ -47,40 +48,49 @@ jQuery(document).ready(function($) {
         memberUpdateButton = $('#update-member'),
         navSignButton = $('#nav-sign-button'),
         navLogoutButton = $('#nav-logout-button'),
-        logoutButton = $('.nav-logout'),
+        logoutButton = $('.logout'),
         editMemberButton = $('#edit-member-btn'),
         onMyJamButton = $('#my-jam');
 
 
 
-	stater.checkState(index_methods.login_Nav,index_methods.logout_Nav);
+	stater.checkState(onLoggedin,index_methods.logout_Nav);
+	function onLoggedin(){
+		var info=kie.getCookieJson(jam_cookie_key);
+		console.log(info);
+		$("#fb-loging-name").html(info.alias);
+		index_methods.login_Nav();	
+	}
+	
     regSubmit.on("click", onSignupClick);
     loginSubmit.on("click",onLoginClick);
-    logoutButton.on("click", onLogoutClick);
+    logoutButton.on("click",function(){
+		index_methods.logout_Nav();
+		window.reload(true);}
+		);
 	termsAccept.prop("checked",termsAccepted);
     signupEmail.on('keyup', function(ev) {
-		var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-		console.log(ev.target.value);
-		var vAcc=ev.target.value;
-			if(re.test(vAcc)){
+			if(chk_email(ev.target.value)){
 					mem.validateAcc(vAcc,function(response){
 					  if (response.accExt) {
-							signupEmail.next('span').addClass('is-visible');
+							signupEmail.find(".error-message").addClass('is-visible');
 							  return false;
 						 } else {
-							signupEmail.next('span').removeClass('is-visible');
+							signupEmail.find(".error-message").removeClass('is-visible');
 						 };	
 					});				
 			}else{
 				console.log("wrong email format");	
 			}
     });
-
-
-
-
+	
+	function chk_email(em){
+		var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+		return re.test(em);
+	}
+	
     function onSignupClick() {
-		console.log("s");
+
 		var rInfo={
 			type : "normal",
 			acc : signupEmail.val(),
@@ -98,7 +108,6 @@ jQuery(document).ready(function($) {
     // 登入方法，並沒有後半段的顯示會員資料，因為會串接onMemberLoading()登入方法，並沒有後半段的顯示會員資料，因為會串接onMemberLoading
     //來顯示會員資料
     function onLoginClick() {
-		
 			var info={
 				type : "normal",
 				acc :loginEmail.val(),
@@ -120,12 +129,6 @@ jQuery(document).ready(function($) {
 
     }
 
-    function onLogoutClick() {
-		mem.logout();
-		//reload的時候就會觸發 $(document).ready裡的方法重新判斷登入狀態。
-        window.location.reload(true);
-        return;
-    }
 
     navRight.on('click', '.signup', signup_selected);
     navRight.on('click', '.login', login_selected);
@@ -164,22 +167,20 @@ jQuery(document).ready(function($) {
     //確認註冊密碼是否符合規則
     signupPassword.on('keyup',function(){
 		if(password_rule(this.value)){
-			$(this).find("error-message").hide();
+			signupPassword.find(".error-message").removeClass("is-visible");
 		}else{
-			$(this).find("error-message").show();
+			signupPassword.find(".error-message").addClass("is-visible");
 		}
 	});
 
     //註冊確認密碼不一致
     passwordConfirm.on('keyup',function(){
 	if(password_different([this.value,signupPassword.val()])){
-            $(this).find("error-message").hide();
+            signupPassword.find(".error-message").removeClass("is-visible");
 	}else{
-		  $(this).find("error-message").show();
+			signupPassword.find(".error-message").addClass("is-visible");
 	}
 		check_all_field();
-		
-		
 	});
 	
     termsAccept.on('click', function(){	
@@ -188,28 +189,22 @@ jQuery(document).ready(function($) {
 	});
 	
 	function check_all_field(){
-		if ( termsAccept && password_different([signupPassword.val(),passwordConfirm.val()])) {
-            regSubmit.removeAttr('disabled');
+		if ( termsAccept && password_different([signupPassword.val(),passwordConfirm.val()]) && chk_email(signupEmail.val())) {
+            regSubmit.attr('disabled',false);
         } else {
-            regSubmit.attr('disabled', 'disabled');
+            regSubmit.attr('disabled', true);
 			}	
 	}
 	
 	
 	function password_rule(value) {
         var rule = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]).{7,15}$/;
-        if (rule.test(value)) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return rule.test(value);
     }
 
     function password_different(val) {
 		var pwsu=signupPassword.val();
-		var pwcfn=passwordConfirm.val();
-		
+		var pwcfn=passwordConfirm.val();		
 		if(pwsu.length==pwcfn.length){
 			if(!password_rule(pwsu) || !password_rule(pwcfn)){
 				passwordConfirm.find("error-message").show();
@@ -218,21 +213,11 @@ jQuery(document).ready(function($) {
 			passwordConfirm.find("error-message").hide();
             return true;
 			} else {
-				console.log("c");
 				passwordConfirm.find("error-message").show();
 				return false;}
-		}else{
-			console.log("d");
-			return false;	}
+		}else{return false;}
     }
 	
-
-    
-    //登入帳密錯誤
-    function error_idps() {
-        $('#remember-me').append('<div class="error-IdPs"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>');
-    }
-
 
     //驗證畫面按確認後回到主畫面
     $('.confirm-button').on('click', function() {
