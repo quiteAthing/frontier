@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="_997_framework/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="_997_framework/font-awesome-4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="_997_framework/css/reset.css">
+    <link rel="stylesheet" href="_997_framework/css/style.css?ver=1">
+    <link rel="stylesheet" href="_997_framework/css/queries.css">
+    <link rel="stylesheet" href="_997_framework/css/bootstrap-social.css">
+    <link rel="stylesheet" href="_997_framework/css/animate.css">
+    <title>mailbox</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="element_lt sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Jam</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- 登入前顯示 -->
+                    <li><a href="#" class="nav_lt login" id="nav-login">登入</a></li>
+                    <li><a href="#" class="nav_lt signup" id="nav-signup">註冊</a></li>
+                    <!-- 登入後顯示 -->
+                    <li><img class="nav_li nav-pic" id="nav-pic" src="guitar.png" alt=""></li>
+                    <li class="nav_li fb-loging-name" id="fb-loging-name">M1Abrams</li>
+                    <li><a class="nav_li" href="mailbox.html"  id="nav-myinbox-btn"><i  class=" fa fa-envelope-o" fa-5x aria-hidden="true" ></i><span class="badge">1<span></a></li>
+                    <li><a 	href="member.html" class="nav_li my-member-link">我的 Jam</a></li>
+                    <li><a  href="#" class="nav_li logout">登出</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- 收件匣頁面 -->
+    <div class="mailbox-page">
+        <div class="mailbox-container">
+            <div class="mailbox-list-wrapper">
+                <div class="mailbox-list">
+                    <form class="mailbox-del-form" action="">
+                        <table id="msgBox" class="mailbox-table-body">
+                            <tr id="mailbox-list-tr-title">
+                                <td class="mail-td-delete">
+                                    <input name="mail-del-all" type="checkbox" id="mail-del-all">
+                                </td>
+                                <td class="mail-td-sender">
+                                    寄件人
+                                </td>
+                                <td class="mail-td-subject">
+                                    主旨
+                                </td>
+                                <td class="mail-td-date">
+                                    時間
+                                </td>
+                            </tr>
+                            <tr  id="msgModel" class="mailbox-list-tr">
+                                <td class="mail-td-delete">
+                                    <input name="mail-del" type="checkbox">								
+									<!--↓hideen data field↓-->
+									<p class="nxx_msgId" style="display:none"  ></p>
+									<p class="nxx_msgBody" style="display:none" ></p>
+									<p class="nxx_msgSenderNk" style="display:none" ></p>
+									<!--↑hideen data field↑-->
+								</td>
+
+                                <td class="mail-td-sender nxx_msgSender">
+                                    abc1345676455asd1123asdasdasdasdda
+                                </td>
+                                <td class="mail-td-subject nxx_msgTitle">
+                                    [徵才] 台北種子團隊徵前後端/UIUX 正/兼職 實習
+                                </td>
+                                <td class="mail-td-date nxx_msgDate">
+                                    2017/03/05
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+				<div class="mailbox-bottom">
+                    <div class="mailbox-bottom-inline">
+                        <button id="deleteMsg" class="form-btn mailist-btn mail-delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button id="lastPage" class="form-btn mailist-btn mail-prev-btn"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                        <button id="nextPage" class="form-btn mailist-btn mail-next-btn"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+			</div>
+		</div>
+
+
+	<!-- 登入/註冊畫面 -->
+    <div class="user-modal">
+        <!-- this is the entire modal form, including the background -->
+        <div class="user-modal-container">
+            <!-- this is the container wrapper -->
+            <ul class="switcher">
+                <li><a href="#0">登入</a></li>
+                <li><a href="#0">註冊</a></li>
+            </ul>
+            <div id="login">
+                <!-- log in form -->
+                <form class="form">
+                    <a class="btn btn-block btn-social btn-facebook" id="fb-login-btn">
+                        <span class="fa fa-facebook"></span> 使用Facebook登入
+                    </a>
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                        <span class="error-message">Error message here!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signin-password">Password</label>
+                        <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="密碼">
+                        <span class="error-message">Error message here!</span>
+                    </p>
+                    <p class="fieldset" id="remember-me">
+                        <input type="checkbox" id="remember-me" checked>
+                        <label for="remember-me">記得我</label>
+                        <div class="error-IdPs">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            <span>無效的帳號或密碼</span>
+                        </div>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width" id="login-submit" type="button" value="登入">
+                    </p>
+                </form>
+                <p class="form-bottom-message"><a href="#0">忘記密碼?</a></p>
+                <a href="#0" class="close-form">Close</a>
+            </div>
+            <!-- login -->
+            <div id="signup">
+                <!-- sign up form -->
+                <form class="form">
+                    <a class="btn btn-block btn-social btn-facebook" id="fb-login-btn2">
+                        <span class="fa fa-facebook"></span> 使用Facebook登入
+                    </a>
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                        <span class="error-message">此帳號已被註冊!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signup-password">Password</label>
+                        <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="密碼">
+                        <span class="error-message">請使用8位元-16位元的英文及數字組成密碼!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signup-password">Password</label>
+                        <input class="full-width  has-padding has-border" id="signup-password-confirm" type="text" placeholder="確認密碼">
+                        <span class="error-message">密碼不一致!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input type="checkbox" id="accept-terms">
+                        <label for="accept-terms">我同意 <a href="#0" class="terms">使用條款與規範</a></label>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width has-padding" id="reg-submit" type="button" value="註冊">
+                    </p>
+                </form>
+                <!-- <a href="#0" class="close-form">Close</a> -->
+            </div>
+            <!-- signup -->
+            <div id="reset-password">
+                <!-- reset password form -->
+                <p class="form-message">忘記密碼?請填入註冊信箱，我們將會寄一組新的密碼給您</p>
+                <form class="form">
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                        <span class="error-message">Error message here!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="重設密碼">
+                    </p>
+                </form>
+                <p class="form-bottom-message"><a href="#0">回到登入畫面</a></p>
+            </div>
+            <a href="#0" class="close-form">Close</a>
+        </div>
+    </div>
+    <!-- 站內信modal -->
+    <div id="mail_detail" class="mailbox-modal">
+                <div class="mailbox-header">
+                        <div class="mail-title">
+                            <label for="mail-title">主旨</label>
+							<input type="text" class="mail-input" id="mail-title"><br>
+                            <label for="recipient">收件者</label>
+							<input type="text" class="mail-input" id="recipient"><br>
+                        </div>
+               </div>
+                <div class="mail-content">
+                        <label for="mail-content">內容</label>
+						<div class="mail-input content">
+                        <textarea name="" class="mail-textarea" id="mail-content"></textarea>
+						</div>
+					</div>
+                    
+                </div>
+            </div>
+	    
+            <div id="msgContent" class="mailbox-content-wrapper">
+                <div class="mailbox-content-header">
+                    <h2>主旨</h2><span class="nxx_msgTltle"></span>
+                    <span>寄件人</span><span class="nxx_msgSender"></span>
+                </div>
+                <div class="nxx_msgBody mailbox-content">
+                    <p>我是內容我是內容我是內容 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officiis ullam libero quam aliquam, totam ducimus enim optio quis quae, tenetur dolor incidunt praesentium dolorum laborum tempora suscipit quo sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nesciunt vel cumque officiis id ut incidunt omnis impedit amet sapiente doloremque ducimus saepe error dolor fugiat, possimus laborum. Accusantium, itaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam nisi molestias vel fugit id rem nam optio debitis minima temporibus blanditiis ipsa qui, repellat dolore facere architecto. Qui, eum, eligendi? 我是內容我是內容我是內容 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officiis ullam libero quam aliquam, totam ducimus enim optio quis quae, tenetur dolor incidunt praesentium dolorum laborum tempora suscipit quo sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nesciunt vel cumque officiis id ut incidunt omnis impedit amet sapiente doloremque ducimus saepe error dolor fugiat, possimus laborum. Accusantium, itaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam nisi molestias vel fugit id rem nam optio debitis minima temporibus blanditiis ipsa qui, repellat dolore facere architecto. Qui, eum, eligendi?</p>
+                </div>
+                <div class="mailbox-reply">
+					<span id="mailto">
+					<span id="msgTitle">
+                    <textarea id="msgArea" placeholder="按這裡回覆信件" class="mailbox-reply-textarea" name="" id="mail-reply-content"></textarea>
+                </div>
+                <div class="mailbox-reply-bottom">
+                    <button class="form-btn mailist-btn return-to-mailbox-list-btn" id="return-to-mailbox-list-btn"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>返回</button>
+                    <button class="form-btn mailist-btn mail-delete-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button id="send_msg" class=" form-btn mailist-btn mailbox-reply-btn">回覆</button>
+                </div>
+				<span id="msg_length"></span>
+            <div class="mail-footer">
+                <button class="form-btn send" id="mail-submit" type="submit">寄出</button>
+            </div>
+
+    </div>
+	<script src="_997_framework/js/linker.js"></script>
+    <script src="_997_framework/js/initFB.js"></script>
+	<script src="_997_framework/jquery-3.1.1.min.js"></script>
+    <script src="_997_framework/js/jam_lib/liar.js"></script>
+    <script src="_997_framework/js/jam_lib/memberFunction.js"></script>
+    <script src="_997_framework/js/jam_lib/liar.js"></script>
+    <script src="_997_framework/js/jam_lib/stater.js"></script>
+    <script src="_997_framework/js/jam_lib/message_system.js"></script>
+    <script src="_997_framework/js/jam_lib/backgroundTasks.js"></script>
+    <script src="_997_framework/js/jam_lib/adv_cookie.js"></script>
+    <script src="_997_framework/js/carousel.js"></script>
+    <script src="_997_framework/bootstrap/js/bootstrap.min.js"></script>
+    <script src="_997_framework/js/nav.js"></script>
+    <script src="_997_framework/js/init_msg.js"></script>
+	
+ 
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+    <title>mailModal</title>
+</head>
+
+<body>
+ <div id="mail_detail" style="background:#aacc22;margin:5px auto;" >
+                <div  style="width:90%;background:#3333ff ;">
+                        <div  style="float:left;" >
+                            <label >主旨</label><br>
+                            <label>收件者</label><br>
+							<label>內容</label><br>
+                        </div>
+                        <div class="mail-input" style="float:left;">
+                            <input type="text" class="mail-input"  id="mail-title"><br>
+                            <input type="text" class="mail-input" id="recipient"><br>
+							<textarea name="" class="mail-textarea" id="mail-content"></textarea><br>
+                        </div>
+                </div>
+                
+            <div  style="float:left;">
+                    <p><span>主旨</span><span class="nxx_msgTltle">123</span></p>
+                    <p><span>寄件人</span><span class="nxx_msgSender">456</span></p>
+				<div class="nxx_msgBody mailbox-content"style="float:left;">
+                    <p>我是內容我是內容我是內容 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officiis ullam libero quam aliquam, totam ducimus enim optio quis quae, tenetur dolor incidunt praesentium dolorum laborum tempora suscipit quo sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nesciunt vel cumque officiis id ut incidunt omnis impedit amet sapiente doloremque ducimus saepe error dolor fugiat, possimus laborum. Accusantium, itaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam nisi molestias vel fugit id rem nam optio debitis minima temporibus blanditiis ipsa qui, repellat dolore facere architecto. Qui, eum, eligendi? 我是內容我是內容我是內容 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officiis ullam libero quam aliquam, totam ducimus enim optio quis quae, tenetur dolor incidunt praesentium dolorum laborum tempora suscipit quo sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nesciunt vel cumque officiis id ut incidunt omnis impedit amet sapiente doloremque ducimus saepe error dolor fugiat, possimus laborum. Accusantium, itaque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam nisi molestias vel fugit id rem nam optio debitis minima temporibus blanditiis ipsa qui, repellat dolore facere architecto. Qui, eum, eligendi?</p>
+                </div>
+				<div class="mailbox-reply">
+					<span id="mailto">
+					<span id="msgTitle">
+                    <textarea id="msgArea" placeholder="按這裡回覆信件" class="mailbox-reply-textarea" name="" id="mail-reply-content"></textarea>
+					<div class="mailbox-reply-bottom">
+						<button class="form-btn mailist-btn return-to-mailbox-list-btn" id="return-to-mailbox-list-btn"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>返回</button>
+						<button class="form-btn mailist-btn mail-delete-btn"><i class="fa fa-trash" aria-hidden="true"></i>刪除信件</button>
+						<button id="send_msg" class=" form-btn mailist-btn mailbox-reply-btn">回覆</button>
+					</div>
+                </div>
+			</div>
+
+
+	</div>
+ 
+</body>
+
+</html>
